@@ -7,27 +7,23 @@
 ## Install
 
 ```bash
-npm install --save use-path
+npm install git+https://editide:-wcjX2dRsYMKTQfDGpCa@gitlab.com/editide/hooks/use-path.git
+```
+
+or 
+
+```bash
+yarn add git+https://editide:-wcjX2dRsYMKTQfDGpCa@gitlab.com/editide/hooks/use-path.git
 ```
 
 ## Usage
 
-```jsx
-import React, { Component } from 'react'
+See [/example/src/App.js](/example/src/App.js) code, you can also `yarn` then `yarn start` in the [/example](/example/) folder to see it in action :)
 
-import { useMyHook } from 'use-path'
-
-const Example = () => {
-  const example = useMyHook()
-  return (
-    <div>{example}</div>
-  )
-}
-```
 
 ## License
 
-SEE LICENCE IN LICENCE.md © [](https://github.com/)
+SEE LICENCE IN LICENCE.md ©
 
 ---
 
