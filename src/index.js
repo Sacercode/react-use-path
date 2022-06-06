@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 
-export const usePath = (useMove) => {
+export const usePath = (onMove) => {
     const [currentPath, setCurrentPath] = useState([]);
 
     function goBack() {
@@ -14,8 +14,8 @@ export const usePath = (useMove) => {
 
     function customSetCurrentPath(value) {
         setCurrentPath(value);
-        if (useMove != undefined) {
-            useMove(value);
+        if (onMove != undefined) {
+            onMove(value);
         }
     }
 
