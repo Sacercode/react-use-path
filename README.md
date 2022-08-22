@@ -21,6 +21,19 @@ yarn add git+https://editide:-wcjX2dRsYMKTQfDGpCa@gitlab.com/editide/hooks/use-p
 See [/example/src/App.js](/example/src/App.js) code, you can also `yarn` then `yarn start` in the [/example](/example/) folder to see it in action :)
 
 
+## Dev
+
+Compile with :
+```
+yarn
+```
+
+Build with :
+```
+yarn build
+```
+
+
 ## License
 
 SEE LICENCE IN LICENCE.md ©

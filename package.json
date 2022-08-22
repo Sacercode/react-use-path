@@ -5,6 +5,7 @@
   "author": "",
   "license": "SEE LICENCE IN LICENCE.md",
   "repository": "",
+  "source": "src/index.js",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
