@@ -1,36 +1,109 @@
 # use-path
 
-> React Path Hook
+> React Path Hook - Manage navigation paths as JavaScript arrays
 
 [![NPM](https://img.shields.io/npm/v/use-path.svg)](https://www.npmjs.com/package/use-path) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-## Install
+Un hook React pour gérer et naviguer dans des chemins représentés sous forme de tableaux JavaScript. Idéal pour créer des interfaces de navigation, des fils d'ariane (breadcrumbs), ou des explorateurs de fichiers.
+
+## Installation
 
 ```bash
 npm install git+https://editide:-wcjX2dRsYMKTQfDGpCa@gitlab.com/editide/hooks/use-path.git
 ```
 
-or 
-
-```bash
-yarn add git+https://editide:-wcjX2dRsYMKTQfDGpCa@gitlab.com/editide/hooks/use-path.git
-```
-
 ## Usage
 
-See [/example/src/App.js](/example/src/App.js) code, you can also `yarn` then `yarn start` in the [/example](/example/) folder to see it in action :)
+```jsx
+import React from 'react'
+import { usePath } from 'use-path'
 
+const MyComponent = () => {
+    const { currentPath, currentPathString, goTo, goBack, goHome } = usePath(
+        (newPath) => {
+            console.log('Path changed:', newPath)
+        }
+    )
 
-## Dev
-
-Compile with :
+    return (
+        <div>
+            <div>Current path: /{currentPathString}</div>
+            <div>Path, separated by commas : {currentPath.join(", ")}</div>
+            
+            {/* Navigation relative */}
+            <button onClick={() => goTo('documents/photos')}>
+                Go to documents/photos
+            </button>
+            
+            {/* Navigation absolue */}
+            <button onClick={() => goTo('/users/john/downloads')}>
+                Go to /users/john/downloads
+            </button>
+            
+            {/* Navigation avec éléments relatifs */}
+            <button onClick={() => goTo('../videos')}>
+                Go to sibling videos folder
+            </button>
+            
+            <button onClick={goBack}>Go back</button>
+            <button onClick={goHome}>Go home</button>
+        </div>
+    )
+}
 ```
-yarn
+
+### API
+
+Le hook `usePath` retourne un objet avec :
+
+- **`currentPath`** : `string[]` - Le chemin actuel sous forme de tableau
+- **`goTo(path: string)`** : Navigue vers un chemin
+  - Chemin relatif : `"folder1/folder2"` (s'ajoute au chemin actuel)
+  - Chemin absolu : `"/folder1/folder2"` (remplace le chemin actuel)
+  - Supporte `..` (dossier parent) et `.` (dossier actuel)
+- **`goBack(index?: number)`** : Revient en arrière d'un niveau ou à un index spécifique
+- **`goHome()`** : Retourne à la racine (`[]`)
+- **`setCurrentPath(path: string[])`** : Définit directement le chemin
+
+### Exemples de chemins
+
+| Type | Exemple | Résultat |
+|------|---------|----------|
+| Relatif | `"documents/photos"` | Ajoute au chemin actuel |
+| Absolu | `"/documents/photos"` | Remplace le chemin actuel |
+| Parent | `"../videos"` | Remonte d'un niveau puis va dans videos |
+| Complexe | `"/users/../home/./docs"` | Va à `/home/docs` |
+| Racine | `"/"` | Va à la racine `[]` |
+
+Voir [/example/src/App.jsx](/example/src/App.jsx) pour un exemple complet.
+
+## Développement
+
+Installation des dépendances :
+```bash
+npm install
 ```
 
-Build with :
+Build de la librairie :
+```bash
+npm run build
 ```
-yarn build
+
+Tests :
+```bash
+npm test
+```
+
+Développement avec watch :
+```bash
+npm run dev
+```
+
+Tester l'exemple :
+```bash
+cd example
+npm install
+npm run dev
 ```
 
 
