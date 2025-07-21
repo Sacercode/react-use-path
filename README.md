@@ -1,22 +1,28 @@
-# use-path
+# react-use-path
 
 > React Path Hook - Manage navigation paths as JavaScript arrays
 
-[![NPM](https://img.shields.io/npm/v/use-path.svg)](https://www.npmjs.com/package/use-path) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/react-use-path.svg)](https://www.npmjs.com/package/react-use-path) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 Un hook React pour gérer et naviguer dans des chemins représentés sous forme de tableaux JavaScript. Idéal pour créer des interfaces de navigation, des fils d'ariane (breadcrumbs), ou des explorateurs de fichiers.
 
 ## Installation
 
 ```bash
-npm install git+https://editide:-wcjX2dRsYMKTQfDGpCa@gitlab.com/editide/hooks/use-path.git
+npm install react-use-path
+```
+
+Ou depuis GitHub :
+
+```bash
+npm install git+https://github.com/Sacercode/react-use-path.git
 ```
 
 ## Usage
 
 ```jsx
 import React from 'react'
-import { usePath } from 'use-path'
+import { usePath } from 'react-use-path'
 
 const MyComponent = () => {
     const { currentPath, currentPathString, goTo, goBack, goHome } = usePath(

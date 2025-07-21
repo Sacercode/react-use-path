@@ -1,11 +1,14 @@
 {
-  "name": "use-path",
+  "name": "react-use-path",
   "version": "1.0.2",
   "type": "module",
   "description": "React Path Hook",
-  "author": "",
+  "author": "Sacercode",
   "license": "SEE LICENCE IN LICENCE.md",
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sacercode/react-use-path.git"
+  },
   "source": "src/index.js",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
