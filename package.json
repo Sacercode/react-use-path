@@ -1,14 +1,24 @@
 {
-  "name": "react-use-path",
-  "version": "1.0.2",
+  "name": "@sacercode/react-use-path",
+  "version": "1.1.0",
   "type": "module",
   "description": "React Path Hook",
   "author": "Sacercode",
-  "license": "SEE LICENCE IN LICENCE.md",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Sacercode/react-use-path.git"
   },
+  "keywords": [
+    "react",
+    "use",
+    "path",
+    "hook"
+  ],
+  "bugs": {
+    "url": "https://github.com/Sacercode/react-use-path/issues"
+  },
+  "homepage": "https://github.com/Sacercode/react-use-path#readme",
   "source": "src/index.js",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -24,7 +34,8 @@
     "dev": "vite build --watch",
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/dist"
+    "deploy": "gh-pages -d example/dist",
+    "publish": "npm publish --access public"
   },
   "peerDependencies": {
     "react": "^18.0.0"
