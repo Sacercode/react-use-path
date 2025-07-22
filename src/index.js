@@ -7,9 +7,9 @@ export const usePath = (onMove) => {
     const currentPathString = currentPath.join("/");
 
     function goBack(index) {
-        if(index && typeof index == "number") {
+        if(typeof index === "number" && index >= 0) {
             var tmp = [...currentPath];
-            while(tmp.length - 1 !== index) {
+            while(tmp.length - 1 > index && tmp.length > 0) {
                 tmp.pop();
             }
             setCurrentPath(tmp);
@@ -27,9 +27,26 @@ export const usePath = (onMove) => {
     }
 
     function customSetCurrentPath(value) {
-        setCurrentPath(value);
+        let processedValue;
+
+        if ([false, true, null, undefined].includes(value)) {
+            processedValue = [];
+        } else if (typeof value === "string") {
+            processedValue = value === "" ? [] : value.split("/");
+        } else if (
+            typeof value === "number" || typeof value === "bigint"
+            || (
+                typeof value === "object" && !Array.isArray(value)
+            ) 
+        ) {
+            processedValue = [value];
+        } else {
+            processedValue = value;
+        }
+        
+        setCurrentPath(processedValue);
         if (typeof onMove == "function") {
-            onMove(value);
+            onMove(processedValue);
         }
     }
 

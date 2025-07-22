@@ -1,6 +1,6 @@
 {
   "name": "@sacercode/react-use-path",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "type": "module",
   "description": "React Path Hook",
   "author": "Sacercode",
@@ -30,6 +30,9 @@
   "scripts": {
     "test": "vitest",
     "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage",
+    "coverage:badges": "npm run coverage && coverage-badges --source coverage/coverage-summary.json --output coverage/badges.svg",
+    "update-badges": "npm run coverage:badges && echo '✅ Coverage badges updated! Check ./coverage/badges.svg'",
     "build": "vite build",
     "dev": "vite build --watch",
     "prepare": "npm run build",
@@ -43,6 +46,8 @@
   "devDependencies": {
     "@testing-library/react": "^16.0.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^2.1.9",
+    "coverage-badges-cli": "^2.1.0",
     "eslint": "^9.31.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.0.0",

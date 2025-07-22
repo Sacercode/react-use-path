@@ -4,6 +4,10 @@
 # dependencies
 node_modules
 
+# coverage
+coverage/*
+!coverage/badges.svg
+
 # builds
 build
 .rpt2_cache

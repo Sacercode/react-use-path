@@ -1,10 +1,12 @@
 # react-use-path
 
-> React Path Hook - Manage navigation paths as JavaScript arrays
+[![Coverage Status](./coverage/badges.svg)](./coverage/index.html)
+[![Tests](https://img.shields.io/badge/tests-35%20passed-brightgreen.svg)](./coverage/index.html)
 
-[![NPM](https://img.shields.io/npm/v/react-use-path.svg)](https://www.npmjs.com/package/react-use-path) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+React Path Hook - Manage navigation paths as JavaScript arrays
 
-A React hook for managing and navigating paths represented as JavaScript arrays. Ideal for creating navigation interfaces, breadcrumbs, or file explorers.
+
+[Sacercode](https://sacercode.fr)'s founder, [edocode](https://hedocode.github.io) created this hook for managing and navigating paths represented as JavaScript arrays. Ideal for creating navigation interfaces, breadcrumbs, or file explorers.
 
 ## Installation
 
@@ -12,7 +14,7 @@ A React hook for managing and navigating paths represented as JavaScript arrays.
 npm install @sacercode/react-use-path
 ```
 
-Ou depuis GitHub :
+Or from GitHub :
 
 ```bash
 npm install git+https://github.com/Sacercode/react-use-path.git
@@ -36,17 +38,17 @@ const MyComponent = () => {
             <div>Current path: /{currentPathString}</div>
             <div>Path, separated by commas : {currentPath.join(", ")}</div>
             
-            {/* Navigation relative */}
+            {/* Relative navigation */}
             <button onClick={() => goTo('documents/photos')}>
                 Go to documents/photos
             </button>
             
-            {/* Navigation absolue */}
+            {/* Absolute navigation */}
             <button onClick={() => goTo('/users/john/downloads')}>
                 Go to /users/john/downloads
             </button>
             
-            {/* Navigation avec éléments relatifs */}
+            {/* Navigating to parent folders */}
             <button onClick={() => goTo('../videos')}>
                 Go to sibling videos folder
             </button>
@@ -60,37 +62,37 @@ const MyComponent = () => {
 
 ### API
 
-Le hook `usePath` retourne un objet avec :
+The `usePath` hook returns an object with :
 
-- **`currentPath`** : `string[]` - Le chemin actuel sous forme de tableau
-- **`goTo(path: string)`** : Navigue vers un chemin
-  - Chemin relatif : `"folder1/folder2"` (s'ajoute au chemin actuel)
-  - Chemin absolu : `"/folder1/folder2"` (remplace le chemin actuel)
-  - Supporte `..` (dossier parent) et `.` (dossier actuel)
-- **`goBack(index?: number)`** : Revient en arrière d'un niveau ou à un index spécifique
-- **`goHome()`** : Retourne à la racine (`[]`)
-- **`setCurrentPath(path: string[])`** : Définit directement le chemin
+- `currentPath` : `string[]` - The current path as an array
+- `goTo(path: string)` : Navigate to given path
+  - Relative path : `"folder1/folder2"` adds to current path
+  - Absolute path : `"/folder1/folder2"` replace current path
+  - Allows parent folder (`..`) and current one (`.`)
+- `goBack(index?: number)` : Go back to previous path or to specific index (starting from 0)
+- `goHome()` : Returns to root. (`[]`)
+- `setCurrentPath(path: string[])` : Defines a new path from an array
 
-### Exemples de chemins
+### Paths examples
 
-| Type | Exemple | Résultat |
+| Type | Example | Result |
 |------|---------|----------|
-| Relatif | `"documents/photos"` | Ajoute au chemin actuel |
-| Absolu | `"/documents/photos"` | Remplace le chemin actuel |
-| Parent | `"../videos"` | Remonte d'un niveau puis va dans videos |
-| Complexe | `"/users/../home/./docs"` | Va à `/home/docs` |
-| Racine | `"/"` | Va à la racine `[]` |
+| Relative | `"documents/photos"` | Adds to current path |
+| Absolu | `"/documents/photos"` | Replace the current path |
+| Parent | `"../videos"` | Get back once and goes into the videos folder |
+| Complex | `"/users/../home/./docs"` | Goes to`/home/docs` |
+| Root | `"/"` | Get back to the root level `[]` |
 
-Voir [/example/src/App.jsx](/example/src/App.jsx) pour un exemple complet.
+See [/example/src/App.jsx](/example/src/App.jsx) for a complete example.
 
 ## Développement
 
-Installation des dépendances :
+Installing dependancies :
 ```bash
 npm install
 ```
 
-Build de la librairie :
+Building the library :
 ```bash
 npm run build
 ```
@@ -100,23 +102,31 @@ Tests :
 npm test
 ```
 
-Développement avec watch :
+Development with watch :
 ```bash
 npm run dev
 ```
 
-Tester l'exemple :
+Testing the example app :
 ```bash
 cd example
 npm install
 npm run dev
 ```
 
+## 🧪 Testing & Coverage
+
+This project maintains 100% test coverage. Run the tests with:
+
+```bash
+npm test          # Run tests in watch mode
+npm run coverage  # Generate coverage report
+npm run update-badges  # Update coverage badges
+```
+
+The coverage badge above is automatically updated and links to the full coverage report.
 
 ## License
 
-SEE LICENCE IN LICENCE.md ©
+[MIT](./LICENCE.md) © [Sacercode](https://sacercode.fr)
 
----
-
-This hook is created using [create-react-hook](https://github.com/hermanya/create-react-hook).

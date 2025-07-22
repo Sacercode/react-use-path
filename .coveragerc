@@ -1,0 +1,5 @@
+{
+  "badgeDir": "./badges",
+  "reportDir": "./coverage",
+  "badgeStyle": "flat"
+}

@@ -25,7 +25,7 @@
         {
             "offsetTernaryExpressions": true,
             "ignoredNodes": ["ConditionalExpression"],
-            "SwitchCase": 1,
+            "SwitchCase": 1
         }
     ],
     "quotes": [
