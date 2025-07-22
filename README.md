@@ -1,26 +1,29 @@
-# react-use-path
+# 🛣️ react-use-path
 
 [![Coverage Status](./coverage/badges.svg)](./coverage/index.html)
 [![Tests](https://img.shields.io/badge/tests-35%20passed-brightgreen.svg)](./coverage/index.html)
 
-React Path Hook - Manage navigation paths as JavaScript arrays
+
+[Sacercode](https://sacercode.fr)'s founder, [edocode](https://hedocode.github.io) created this React hook for managing and navigating paths represented as JavaScript arrays. Ideal for creating navigation interfaces, breadcrumbs, or file explorers.
+
+## 🌐 Live Demo
+
+**[Try the interactive example ! 😊](https://sacercode.github.io/react-use-path/)**
 
 
-[Sacercode](https://sacercode.fr)'s founder, [edocode](https://hedocode.github.io) created this hook for managing and navigating paths represented as JavaScript arrays. Ideal for creating navigation interfaces, breadcrumbs, or file explorers.
-
-## Installation
+## 🏗️ Installation
 
 ```bash
 npm install @sacercode/react-use-path
 ```
 
-Or from GitHub :
+Or from GitHub 😺+🐙:
 
 ```bash
 npm install git+https://github.com/Sacercode/react-use-path.git
 ```
 
-## Usage
+## ⚙️ Usage and config
 
 ```jsx
 import React from 'react'
@@ -64,7 +67,7 @@ const MyComponent = () => {
 
 The `usePath` hook returns an object with :
 
-- `currentPath` : `string[]` - The current path as an array
+- `currentPath` : `string[]` - The current path as a string array
 - `goTo(path: string)` : Navigate to given path
   - Relative path : `"folder1/folder2"` adds to current path
   - Absolute path : `"/folder1/folder2"` replace current path
@@ -85,7 +88,7 @@ The `usePath` hook returns an object with :
 
 See [/example/src/App.jsx](/example/src/App.jsx) for a complete example.
 
-## Développement
+## 🧑‍💻 Development
 
 Installing dependancies :
 ```bash
@@ -102,7 +105,7 @@ Tests :
 npm test
 ```
 
-Development with watch :
+Development watching file changes :
 ```bash
 npm run dev
 ```

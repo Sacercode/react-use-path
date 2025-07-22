@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/Sacercode/react-use-path/issues"
   },
-  "homepage": "https://github.com/Sacercode/react-use-path#readme",
+  "homepage": "https://sacercode.github.io/react-use-path/",
   "source": "src/index.js",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -36,8 +36,9 @@
     "build": "vite build",
     "dev": "vite build --watch",
     "prepare": "npm run build",
-    "predeploy": "cd example && npm install && npm run build",
+    "predeploy": "npm run build && cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/dist",
+    "deploy:ci": "npm run predeploy && npm run deploy",
     "publish": "npm publish --access public"
   },
   "peerDependencies": {
