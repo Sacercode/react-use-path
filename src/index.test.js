@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { renderHook, act } from "@testing-library/react";
+import { renderHook, act, waitFor } from "@testing-library/react";
 import { usePath } from './index.js';
 
 describe('usePath', () => {
@@ -46,15 +46,23 @@ describe('usePath', () => {
     expect(result.current.currentPath).toEqual([]);
   });
 
-  it('should call onMove callback when path changes', () => {
+  it('should call onMove callback when path changes', async () => {
     const onMove = vi.fn();
     const { result } = renderHook(() => usePath(onMove));
+    
+    // Attendre que l'effet initial se déclenche
+    await waitFor(() => {
+      expect(onMove).toHaveBeenCalledTimes(1);
+    });
     
     act(() => {
       result.current.goTo('folder1');
     });
-
-    expect(onMove).toHaveBeenCalledTimes(1);
+    
+    await waitFor(() => {
+      expect(onMove).toHaveBeenCalledTimes(2);
+      expect(onMove).toHaveBeenCalledWith(['folder1']);
+    });
   });
 
   it('should handle relative paths with .. and .', () => {
@@ -121,23 +129,36 @@ describe('usePath', () => {
 
   // Tests pour la fonctionnalité onMove
   describe('onMove callback', () => {
-    it('should call onMove with correct path on goTo', () => {
+    it('should call onMove with correct path on goTo', async () => {
       const onMove = vi.fn();
       const { result } = renderHook(() => usePath(onMove));
+      
+      // Attendre l'appel initial
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(1);
+      });
       
       act(() => {
         result.current.goTo('folder1/folder2');
       });
 
-      expect(onMove).toHaveBeenCalledWith(['folder1', 'folder2']);
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(2);
+        expect(onMove).toHaveBeenLastCalledWith(['folder1', 'folder2']);
+      });
     });
 
-    it('should call onMove on goBack', () => {
+    it('should call onMove on goBack', async () => {
       const onMove = vi.fn();
       const { result } = renderHook(() => usePath(onMove));
       
       act(() => {
         result.current.goTo('folder1/folder2/folder3');
+      });
+
+      // Attendre que les premiers appels se terminent (initial + goTo)
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(2);
       });
 
       vi.clearAllMocks();
@@ -146,15 +167,23 @@ describe('usePath', () => {
         result.current.goBack();
       });
 
-      expect(onMove).toHaveBeenCalledWith(['folder1', 'folder2']);
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(1);
+        expect(onMove).toHaveBeenCalledWith(['folder1', 'folder2']);
+      });
     });
 
-    it('should call onMove on goHome', () => {
+    it('should call onMove on goHome', async () => {
       const onMove = vi.fn();
       const { result } = renderHook(() => usePath(onMove));
       
       act(() => {
         result.current.goTo('folder1');
+      });
+
+      // Attendre que les premiers appels se terminent (initial + goTo)
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(2);
       });
 
       vi.clearAllMocks();
@@ -163,18 +192,29 @@ describe('usePath', () => {
         result.current.goHome();
       });
 
-      expect(onMove).toHaveBeenCalledWith([]);
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(1);
+        expect(onMove).toHaveBeenCalledWith([]);
+      });
     });
 
-    it('should call onMove on setCurrentPath', () => {
+    it('should call onMove on setCurrentPath', async () => {
       const onMove = vi.fn();
       const { result } = renderHook(() => usePath(onMove));
+      
+      // Attendre l'appel initial
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(1);
+      });
       
       act(() => {
         result.current.setCurrentPath(['custom', 'path']);
       });
 
-      expect(onMove).toHaveBeenCalledWith(['custom', 'path']);
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(2);
+        expect(onMove).toHaveBeenLastCalledWith(['custom', 'path']);
+      });
     });
   });
 
@@ -400,12 +440,17 @@ describe('usePath', () => {
       expect(result.current.currentPath).toEqual(['folder1', 'folder2']);
     });
 
-    it('should call onMove when going back to specific index', () => {
+    it('should call onMove when going back to specific index', async () => {
       const onMove = vi.fn();
       const { result } = renderHook(() => usePath(onMove));
       
       act(() => {
         result.current.goTo('folder1/folder2/folder3/folder4');
+      });
+
+      // Attendre que les premiers appels se terminent (initial + goTo)
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(2);
       });
 
       vi.clearAllMocks();
@@ -414,7 +459,10 @@ describe('usePath', () => {
         result.current.goBack(1);
       });
 
-      expect(onMove).toHaveBeenCalledWith(['folder1', 'folder2']);
+      await waitFor(() => {
+        expect(onMove).toHaveBeenCalledTimes(1);
+        expect(onMove).toHaveBeenCalledWith(['folder1', 'folder2']);
+      });
     });
 
     it('should not change path when index equals current last index', () => {

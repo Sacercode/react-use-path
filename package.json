@@ -30,9 +30,7 @@
   "scripts": {
     "test": "vitest",
     "test:ui": "vitest --ui",
-    "coverage": "vitest run --coverage",
-    "coverage:badges": "npm run coverage && coverage-badges --source coverage/coverage-summary.json --output coverage/badges.svg",
-    "update-badges": "npm run coverage:badges && echo '✅ Coverage badges updated! Check ./coverage/badges.svg'",
+    "coverage": "vitest run --coverage && coverage-badges --source coverage/coverage-summary.json --output coverage/badges.svg",
     "build": "vite build",
     "dev": "vite build --watch",
     "prepare": "npm run build",

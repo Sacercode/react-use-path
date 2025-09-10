@@ -1,8 +1,16 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const usePath = (onMove) => {
     const [currentPath, setCurrentPath] = useState([]);
+
+    useEffect(
+        () => {
+            if (onMove && typeof onMove === "function") {
+                onMove(currentPath);
+            }
+        }, [onMove, currentPath]
+    )
 
     const currentPathString = currentPath.join("/");
 
@@ -13,16 +21,10 @@ export const usePath = (onMove) => {
                 tmp.pop();
             }
             setCurrentPath(tmp);
-            if (typeof onMove == "function") {
-                onMove(tmp);
-            }
         } else if (currentPath.length > 0) {
             const tmp = [...currentPath];
             tmp.pop();
             setCurrentPath(tmp);
-            if (typeof onMove == "function") {
-                onMove(tmp);
-            }
         }
     }
 
@@ -45,16 +47,10 @@ export const usePath = (onMove) => {
         }
         
         setCurrentPath(processedValue);
-        if (typeof onMove == "function") {
-            onMove(processedValue);
-        }
     }
 
     function goHome() {
         setCurrentPath([]);
-        if (typeof onMove == "function") {
-            onMove([]);
-        }
     }
 
     function goTo(path) {
@@ -92,9 +88,6 @@ export const usePath = (onMove) => {
             }
             
             setCurrentPath(newCurrentPath);
-            if (typeof onMove == "function") {
-                onMove(newCurrentPath);
-            }
         }
     }
 
