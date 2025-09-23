@@ -124,7 +124,6 @@ This project maintains 100% test coverage. Run the tests with:
 ```bash
 npm test          # Run tests in watch mode
 npm run coverage  # Generate coverage report
-npm run update-badges  # Update coverage badges
 ```
 
 The coverage badge above is automatically updated and links to the full coverage report.
