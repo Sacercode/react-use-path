@@ -15,6 +15,8 @@ const App = () => {
           target='_blank' rel='noopener noreferrer'
         >
           Github
+        </a>, or <a href="https://www.npmjs.com/package/@sacercode/react-use-path?activeTab=code" target='_blank' rel='noopener noreferrer'>
+          NPM
         </a>.
 
         <h2>Demo</h2>
