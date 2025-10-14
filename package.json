@@ -1,6 +1,6 @@
 {
   "name": "@sacercode/react-use-path",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "type": "module",
   "description": "React Path Hook",
   "author": "Sacercode",
@@ -40,7 +40,7 @@
     "publish": "npm publish --access public"
   },
   "peerDependencies": {
-    "react": "^18.0.0"
+    "react": ">=17.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^16.0.1",
