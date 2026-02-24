@@ -13,13 +13,13 @@
 
 ## 🏗️ Installation
 
-```bash
+```sh
 npm install @sacercode/react-use-path
 ```
 
 Or from GitHub 😺+🐙:
 
-```bash
+```sh
 npm install git+https://github.com/Sacercode/react-use-path.git
 ```
 

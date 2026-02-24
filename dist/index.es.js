@@ -1,49 +1,56 @@
-import { useState as p } from "react";
-const h = (e) => {
-  const [i, s] = p([]), o = i.join("/");
-  function u(t) {
+import { useState as h, useEffect as p } from "react";
+const m = (i) => {
+  const [f, s] = h([]);
+  p(
+    () => {
+      i && typeof i == "function" && i(f);
+    },
+    [i, f]
+  );
+  const o = f.join("/");
+  function g(t) {
     if (typeof t == "number" && t >= 0) {
-      for (var n = [...i]; n.length - 1 > t && n.length > 0; )
-        n.pop();
-      s(n), typeof e == "function" && e(n);
-    } else if (i.length > 0) {
-      const f = [...i];
-      f.pop(), s(f), typeof e == "function" && e(f);
+      for (var e = [...f]; e.length - 1 > t && e.length > 0; )
+        e.pop();
+      s(e);
+    } else if (f.length > 0) {
+      const n = [...f];
+      n.pop(), s(n);
     }
   }
-  function g(t) {
-    let n;
-    [!1, !0, null, void 0].includes(t) ? n = [] : typeof t == "string" ? n = t === "" ? [] : t.split("/") : typeof t == "number" || typeof t == "bigint" || typeof t == "object" && !Array.isArray(t) ? n = [t] : n = t, s(n), typeof e == "function" && e(n);
+  function u(t) {
+    let e;
+    [!1, !0, null, void 0].includes(t) ? e = [] : typeof t == "string" ? e = t === "" ? [] : t.split("/") : typeof t == "number" || typeof t == "bigint" || typeof t == "object" && !Array.isArray(t) ? e = [t] : e = t, s(e);
   }
   function c() {
-    s([]), typeof e == "function" && e([]);
+    s([]);
   }
   function l(t) {
     if (typeof t == "string" && t.length) {
-      let f;
-      if (t.startsWith("/") ? (f = [], t = t.substring(1)) : f = [...i], arguments.length > 1)
-        for (var n = 0; n < arguments.length; n++) {
-          const r = arguments[n];
-          f.push(r);
+      let n;
+      if (t.startsWith("/") ? (n = [], t = t.substring(1)) : n = [...f], arguments.length > 1)
+        for (var e = 0; e < arguments.length; e++) {
+          const r = arguments[e];
+          n.push(r);
         }
       else typeof t == "string" && t.length > 0 && t.split("/").forEach(
         (r) => {
-          r === ".." ? f.pop() : r !== "." && r !== "" && f.push(r);
+          r === ".." ? n.pop() : r !== "." && r !== "" && n.push(r);
         }
       );
-      s(f), typeof e == "function" && e(f);
+      s(n);
     }
   }
   return {
-    currentPath: i,
+    currentPath: f,
     currentPathString: o,
-    setCurrentPath: g,
+    setCurrentPath: u,
     goTo: l,
-    goBack: u,
+    goBack: g,
     goHome: c
   };
 };
 export {
-  h as usePath
+  m as usePath
 };
 //# sourceMappingURL=index.es.js.map

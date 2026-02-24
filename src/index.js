@@ -1,16 +1,17 @@
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export const usePath = (onMove) => {
     const [currentPath, setCurrentPath] = useState([]);
+    const [previousPath, setPreviousPath] = useState([]);
 
-    useEffect(
-        () => {
-            if (onMove && typeof onMove === "function") {
-                onMove(currentPath);
-            }
-        }, [onMove, currentPath]
-    )
+    // https://fr.react.dev/learn/you-might-not-need-an-effect#adjusting-some-state-when-a-prop-changes
+    if (currentPath !== previousPath) {
+        if (onMove && typeof onMove === "function") {
+            onMove(currentPath);
+        }
+        setPreviousPath(currentPath);
+    }
 
     const currentPathString = currentPath.join("/");
 
